@@ -68,39 +68,6 @@
             scrollbar-width: none;
             /* Firefox */
         }
-         @media (max-width: 768px) {
-        /* Scales down the huge fonts for mobile and fixes line height */
-        .heading-mask .h1, 
-        .heading-mask_heading {
-            font-size: 12vw !important; 
-            line-height: 1.2 !important;
-            white-space: normal !important;
-            word-wrap: break-word !important;
-        }
-        
-        /* Overrides the nowrap class causing horizontal overflow */
-        .none-break {
-            white-space: normal !important;
-        }
-
-        /* Gives breathing room between the stacked words */
-        .heading-mask {
-            padding-bottom: 20px !important;
-            margin-bottom: 10px !important;
-            height: auto !important;
-        }
-
-        /* Ensures the masking animation container expands to fit the wrapped text */
-        .simple-masking {
-            height: auto !important;
-            min-height: max-content !important;
-        }
-
-        /* Adds spacing between the heading and the description paragraphs on mobile */
-        .heading-mask .desc {
-            margin-top: 10px !important;
-        }
-    }
     </style>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-79VFDFP12E"></script>
     <script>
