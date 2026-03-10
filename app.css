@@ -9922,7 +9922,6 @@ pre {
    ============================================================ */
 
 @media only screen and (max-width: 480px){
-
     /* 1. Force yellow layer and all text inside to be dark */
     .layer__red,
     .layer__red * {
@@ -9935,21 +9934,21 @@ pre {
         -webkit-text-fill-color: rgba(13, 13, 13, 0.6) !important;
     }
 
-    /* 2. Override opacity:0 classes */
+    /* 2. Override opacity:0 (op-0) classes that are stuck */
     .layer__red .op-0 {
         opacity: 1 !important;
         pointer-events: auto !important;
         visibility: visible !important;
     }
 
-    /* 3. Override display:none headings */
+    /* 3. Override display:none (d-none) on mobile headings */
     .layer__red .d-none {
         display: block !important;
     }
 
-    /* 4. Disable masking that hides text */
+    /* 4. Disable clipping masks that are hiding text */
     .layer__red .heading-mask_el__masking {
-        display: none !important;
+        display: none !important; /* Prevents yellow-on-yellow overlapping */
     }
     
     .layer__red .heading-mask_el__deep {
@@ -9958,7 +9957,7 @@ pre {
         visibility: visible !important;
     }
 
-    /* 5. Disable scroll animation clipping */
+    /* 5. Force scroll animations to reveal text instantly on mobile */
     .layer__red .scroll-paragraph-mask .line,
     .layer__red .simple-masking_el,
     .layer__red .anim--chars .line {
@@ -9968,42 +9967,34 @@ pre {
         opacity: 1 !important;
     }
 
-    /* 6. Enable tap interaction */
+    /* 6. Force the yellow box to reveal when tapping the links on mobile */
     .heading-mask:active .heading-mask_el__masking,
     .heading-mask:focus-within .heading-mask_el__masking {
         -webkit-clip-path: inset(0) !important;
         clip-path: inset(0) !important;
         transition: all 0.3s ease !important;
     }
-
-    /* 7. Remove blue tap highlight */
-    .heading-mask,
-    .social-link {
+    
+    /* 7. Remove default blue mobile tap highlight */
+    .heading-mask, .social-link {
         -webkit-tap-highlight-color: transparent !important;
     }
 
-    /* 8. Disable pointer events ONLY on the yellow layer */
-    .contact.contact__red .layer__red{
+    /* 8. Restore pointer-events so the underlying dark layer can detect the hover/tap */
+    .contact.contact__red {
         pointer-events: none !important;
     }
-
-    /* 9. Make the links clickable */
     .work_history .heading-mask a{
-        pointer-events:auto !important;
-        z-index:999;
-        position:relative;
-        display:inline-block;
-    }
+pointer-events:auto !important;
+z-index:10;
+position:relative;
 }
-
-/* Yellow background */
+}
 .contact__red{
     background:#ffd600 !important;
 }
-
-/* Desktop + global link safety */
 .work_history .heading-mask a{
-    pointer-events:auto !important;
-    z-index:999;
-    position:relative;
+pointer-events:auto !important;
+z-index:10;
+position:relative;
 }
