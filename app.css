@@ -9976,7 +9976,7 @@ pre {
    ============================================================ */
 
 /* 1. Force the yellow box to reveal when tapping the links on mobile */
-
+@media (max-width: 767px) {
     .heading-mask:active .heading-mask_el__masking,
     .heading-mask:focus-within .heading-mask_el__masking {
         -webkit-clip-path: inset(0) !important;
@@ -9988,7 +9988,7 @@ pre {
     .heading-mask, .social-link {
         -webkit-tap-highlight-color: transparent !important;
     }
-
+}
 
 /* 2. Ensure all text in the red/yellow layer stays dark and visible */
 .layer__red, .layer__red * {
