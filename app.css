@@ -9998,4 +9998,110 @@ pointer-events:auto !important;
 z-index:10;
 position:relative;
 }
+}
+/* ================================
+   MOBILE FIX FOR "WHAT I DO" TEXT
+   ================================ */
 
+@media only screen and (max-width: 480px){
+
+    /* make rows stack nicely */
+    .about_ido .row{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    /* heading spacing */
+    .about_ido h2{
+        font-size: 32px;
+        line-height: 1.2;
+        margin-bottom: 10px;
+        display:block;
+    }
+
+    /* description text below heading */
+    .about_ido .desc{
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 25px;
+        display:block;
+    }
+
+    /* remove offsets that break mobile layout */
+    .about_ido .offset-lg-2,
+    .about_ido .offset-sm-1{
+        margin-left:0 !important;
+    }
+
+    /* ensure columns take full width */
+    .about_ido .col-sm-6,
+    .about_ido .col-sm-4{
+        width:100%;
+        max-width:100%;
+        flex:0 0 100%;
+    }
+     .about_ido .heading-mask{
+        margin-bottom:2px;
+    }
+
+}
+@media only screen and (max-width:480px){
+
+    .client_list .row{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .client_list h2{
+        font-size:32px;
+        line-height:1.2;
+        margin-bottom:10px;
+        display:block;
+    }
+
+    .client_list .desc{
+        font-size:14px;
+        line-height:1.5;
+        margin-bottom:25px;
+        display:block;
+    }
+
+    .client_list .offset-lg-2,
+    .client_list .offset-sm-1{
+        margin-left:0 !important;
+    }
+
+    .client_list .col-sm-6,
+    .client_list .col-sm-4{
+        width:100%;
+        max-width:100%;
+        flex:0 0 100%;
+    }
+
+    .client_list .none-break{
+        white-space:normal !important;
+    }
+
+    .client_list .simple-masking{
+        overflow:visible;
+    }
+
+    .client_list .heading-mask{
+    position: relative;
+    height: auto;
+}
+
+.client_list .heading-mask_el{
+    position: relative;
+}
+
+.client_list .simple-masking{
+    overflow: visible;
+    height: auto;
+}
+   .client_list .heading-mask{
+        margin-bottom:25px;
+    }
+
+
+}
