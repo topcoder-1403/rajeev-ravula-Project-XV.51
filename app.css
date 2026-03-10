@@ -9998,3 +9998,19 @@ pointer-events:auto !important;
 z-index:10;
 position:relative;
 }
+/* --- Desktop Fix: Constrain Social Link Hover Area --- */
+/* --- Desktop Fix: Individual Yellow Hover for Social Links --- */
+@media (min-width: 1024px) {
+    /* 1. Force the hover box to only be as wide as the text itself */
+    .contact .social-link {
+        width: max-content;
+        width: -moz-max-content;
+    }
+    
+    /* 2. Smoothly reveal the yellow background and black text on hover */
+    .contact .heading-mask:hover .heading-mask_el__masking {
+        -webkit-clip-path: inset(0) !important;
+        clip-path: inset(0) !important;
+        transition: clip-path 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+    }
+}
