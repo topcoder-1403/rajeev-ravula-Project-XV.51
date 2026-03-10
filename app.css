@@ -9984,6 +9984,11 @@ pre {
     .contact.contact__red {
         pointer-events: none !important;
     }
+    .work_history .heading-mask a{
+pointer-events:auto !important;
+z-index:10;
+position:relative;
+}
 }
 .contact__red{
     background:#ffd600 !important;
