@@ -9988,3 +9988,8 @@ pre {
 .contact__red{
     background:#ffd600 !important;
 }
+.heading-mask a{
+pointer-events:auto !important;
+z-index:999;
+position:relative;
+}
