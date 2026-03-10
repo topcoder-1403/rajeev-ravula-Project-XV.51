@@ -9916,13 +9916,10 @@ pre {
 .vh-100 {
     height: 100vh
 }
-.contact__red{
-    background:#ffd600 !important;
-}
 /* ============================================================
    FINAL MOBILE FIX FOR YELLOW LAYER TEXT VISIBILITY 
    ============================================================ */
-
+@media (max-width: 767px) {
     /* 1. Force yellow layer and all text inside to be dark */
     .layer__red,
     .layer__red * {
@@ -9967,10 +9964,7 @@ pre {
         transform: none !important;
         opacity: 1 !important;
     }
-/* ============================================================
-   HIGH PRIORITY FIX: CONTACT LINKS MOBILE TOUCH/PRESS STATE
-   ============================================================ */
-
+}
 /* ============================================================
    PRODUCTION FIX: MOBILE CONTACT HOVER & LAYER SYNC
    ============================================================ */
