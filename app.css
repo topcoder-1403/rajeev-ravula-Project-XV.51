@@ -10014,7 +10014,7 @@ position:relative;
 }
 
 .about_ido h2{
-    font-size:32px;
+    font-size:40px;
     line-height:1.2;
     margin-bottom:10px;
     display:block;
@@ -10050,7 +10050,7 @@ position:relative;
 }
 
 .client_list h2{
-    font-size: 28px;
+    font-size: 40px;
     line-height: 1.2;
     margin-bottom: 10px;
     margin-top: 0; /* Ensures default margins don't push it up */
