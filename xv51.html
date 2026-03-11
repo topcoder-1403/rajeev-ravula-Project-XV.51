@@ -333,7 +333,6 @@ var firebaseConfig = {
   measurementId: "G-MR4TK2C8N2"
 };
 
-
 firebase.initializeApp(firebaseConfig)
 const auth=firebase.auth()
 
@@ -510,7 +509,7 @@ function closePreview(){
     const modal=document.getElementById("preview-modal")
     const content=document.getElementById("preview-content")
     modal.style.display="none"
-    content.innerHTML="" // Stop videos from playing when closed
+    content.innerHTML="" // Stop videos/audio from playing when closed
 }
 
 /* RENDER LOCAL TIMELINE (Uses window.timelineFiles from uploads/files.js) */
@@ -544,21 +543,40 @@ function renderTimeline(entries){
             let filename = file.split('/').pop();
             let title = decodeURIComponent(filename.split('.')[0]);
 
-            if(file.match(/\.(jpg|jpeg|png|gif|webp)$/i)){
-                mediaHtml=`<img class="media-box" src="${url}">`
-                preview=`<img src="${url}">`
+            // 1. Match ALL Image Extensions
+            if(file.match(/\.(jpg|jpeg|png|gif|webp|bmp|svg|tiff|ico)$/i)){
+                mediaHtml=`<img class="media-box" src="${url}" loading="lazy">`
+                preview=`<img src="${url}" loading="lazy">`
                 mediaType="Image"
-            }else{
+            }
+            // 2. Match ALL Video Extensions
+            else if(file.match(/\.(mp4|webm|ogg|mov|avi|mkv|flv|wmv|m4v|3gp)$/i)){
                 mediaHtml=`<video class="media-box" src="${url}"></video>`
                 preview=`<video src="${url}" controls autoplay></video>`
                 mediaType="Video"
+            }
+            // 3. Match ALL Audio Extensions
+            else if(file.match(/\.(mp3|wav|ogg|m4a|aac|flac|wma)$/i)){
+                mediaHtml=`<div class="media-box" style="display:flex; align-items:center; justify-content:center; background:#1a1a1a;"><i class="fa-solid fa-music" style="font-size:60px; color:#ffd11a;"></i></div>`
+                preview=`<audio src="${url}" controls autoplay style="outline:none; width:400px; max-width:90vw;"></audio>`
+                mediaType="Audio"
+            }
+            // 4. Fallback for Documents (PDF, TXT, DOCX, ZIP, etc.)
+            else {
+                mediaHtml=`<div class="media-box" style="display:flex; align-items:center; justify-content:center; background:#1a1a1a;"><i class="fa-solid fa-file" style="font-size:60px; color:#ffd11a;"></i></div>`
+                preview=`
+                    <div style="text-align:center; background:#111; padding:50px; border-radius:16px; min-width:300px;">
+                        <i class="fa-solid fa-file" style="font-size:80px; color:#ffd11a; margin-bottom:20px;"></i>
+                        <h3 style="color:white; margin-top:0; max-width: 400px; word-wrap: break-word;">${title}</h3>
+                        <a href="${url}" target="_blank" class="btn-primary" style="display:inline-block; text-decoration:none; border-radius:30px; margin-top:15px; width:auto; padding:10px 30px;">Open / Download File</a>
+                    </div>`
+                mediaType="Document"
             }
 
             const card=document.createElement("div")
             card.className="media-item"
             card.onclick=()=>openPreview(preview)
 
-            // Reconstruct the exact card layout from your original code
             card.innerHTML=`
                 <div style="position:relative">
                     ${mediaHtml}
