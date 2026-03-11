@@ -271,6 +271,85 @@ cursor:pointer;
 color: #000;
 }
 
+/* ==================================================== */
+/* MOBILE RESPONSIVE STYLING (max-width: 480px) */
+/* ==================================================== */
+@media only screen and (max-width: 480px) {
+    /* Header adjustments */
+    .header-inner {
+        padding: 20px 15px;
+    }
+    .header-title {
+        font-size: 18px;
+    }
+    .auth-btn {
+        right: 15px;
+        padding: 8px 14px;
+        font-size: 12px;
+    }
+
+    /* Video & Date Section adjustments */
+    .video-section {
+        grid-template-columns: 1fr;
+        padding-top: 100px;
+        text-align: center;
+        gap: 30px;
+    }
+    .date-side {
+        padding-left: 0;
+        justify-self: center;
+    }
+    .video-section > div:last-child {
+        display: none; /* Hide the spacer on mobile */
+    }
+    .video-wrapper {
+        padding: 0 15px;
+        box-sizing: border-box;
+        width: 100%;
+    }
+    .main-video {
+        width: 100%;
+        height: auto;
+    }
+
+    /* Text Adjustments */
+    .date-title {
+        font-size: 28px;
+    }
+    .unauth-text-section h1 {
+        font-size: 26px !important;
+        letter-spacing: 2px !important;
+    }
+    .unauth-text-section p {
+        font-size: 14px !important;
+        padding: 0 10px;
+    }
+    .btn-primary[style*="width:300px"] {
+        width: 100% !important;
+        max-width: 300px;
+    }
+
+    /* Timeline & Media Grid adjustments */
+    .auth-view {
+        padding: 30px 15px 50px 15px;
+    }
+    .timeline-item {
+        padding-left: 20px;
+        margin-bottom: 50px;
+    }
+    .t-date {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+    .media-grid {
+        grid-template-columns: 1fr; /* Stack cards 1 per row */
+        gap: 20px;
+    }
+    .media-box {
+        height: 220px; /* Adjust height for mobile */
+    }
+}
+
 </style>
 </head>
 <body>
@@ -390,8 +469,9 @@ function openAuthModal(){
         authModal.style.justifyContent="center"
         authModal.style.zIndex="3000"
 
+        // Note: added max-width and box-sizing below so it doesn't break mobile edges
         authModal.innerHTML=`
-        <div style="background:#111;padding:40px;border-radius:20px;width:380px">
+        <div style="background:#111;padding:30px;border-radius:20px;width:90%;max-width:380px;box-sizing:border-box;">
             <h3 style="color:#ffd11a;margin-top:0">Secure Login</h3>
             
             <input id="login-email" class="admin-input" placeholder="Email">
