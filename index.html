@@ -1390,26 +1390,36 @@
 
   function startAudio() {
     if (audio && audio.paused) {
-      audio.play().catch(() => {});
+      let playPromise = audio.play();
+      
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          // Playback succeeded! Now we can safely remove the event listeners.
+          document.removeEventListener("click", startAudio);
+          document.removeEventListener("keydown", startAudio);
+          document.removeEventListener("touchstart", startAudio);
+        }).catch((error) => {
+          // Playback was still blocked. We do NOT remove listeners, 
+          // so the script can try again on the user's next click.
+          console.log("Audio playback waiting for user interaction.");
+        });
+      }
     }
-    document.removeEventListener("click", startAudio);
-    document.removeEventListener("scroll", startAudio);
-    document.removeEventListener("keydown", startAudio);
-    document.removeEventListener("touchstart", startAudio);
-    document.removeEventListener("mousemove", startAudio);
   }
 
-  // Try autoplay immediately (works if browser allows it)
-  audio.play().catch(() => {
-    // If blocked, wait for first interaction
-    document.addEventListener("click", startAudio);
-    document.addEventListener("scroll", startAudio);
-    document.addEventListener("keydown", startAudio);
-    document.addEventListener("touchstart", startAudio);
-    document.addEventListener("mousemove", startAudio); // catches first mouse movement
-  });
+  // Try autoplay immediately (will work if the browser allows it)
+  let initialPlayPromise = audio.play();
+  
+  if (initialPlayPromise !== undefined) {
+      initialPlayPromise.catch(() => {
+        // If blocked, wait for a VALID interaction (click, keydown, touch)
+        // Notice we removed 'mousemove' and 'scroll' as they ruin the process.
+        document.addEventListener("click", startAudio);
+        document.addEventListener("keydown", startAudio);
+        document.addEventListener("touchstart", startAudio);
+      });
+  }
 </script>
-
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 </body>
 </html>
